@@ -8,12 +8,14 @@ namespace BinariTreeTest
 {
     public class Node
     {
-        public Node MaxSeverity { get; set; }
-        public Node MinSeverity { get; set; }
+        public int MaxSeverity { get; set; }
+        public int MinSeverity { get; set; }
         public List<string> Defenses { get; set; }
 
-        public Node()
+        public Node(int maxSeverity,int minSeverity)
         {
+            MaxSeverity = maxSeverity;
+            MinSeverity = minSeverity;
             Defenses = new List<string>();
         }
 
