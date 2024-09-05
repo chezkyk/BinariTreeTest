@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using BinariTreeTest.Models;
 
 namespace BinariTreeTest
 {
@@ -61,6 +62,50 @@ namespace BinariTreeTest
                 Console.WriteLine("There is no tree to process");
             }
 
+        }
+
+        public int FindValueInTree(int value)
+        {
+            int ans = PreorderFindValueRecursion(root, value);
+            return ans;
+        }
+        private int PreorderFindValueRecursion(Node node, int value)
+        {
+            if (node == null)
+            {
+                return -1;
+            }
+
+            if (node.Value.MinSeverity == value || node.Value.MaxSeverity == value)
+            {
+                return value;
+            }
+
+            if (value < node.Value.MinSeverity)
+            {
+                return PreorderFindValueRecursion(node.Left, value);
+            }
+            else
+            {
+                return PreorderFindValueRecursion(node.Right, value);
+            }
+
+        }
+        public Node GetMin()
+        {
+            if (root == null)
+            {
+                return null;
+            }
+            return GetMinRecursion(root);
+        }
+        public Node GetMinRecursion(Node node)
+        {
+            if (node.Left == null)
+            {
+                return node;
+            }
+            return GetMinRecursion(node.Left);
         }
     }
 }
