@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 class Program // Binary search tree program
 {
 
-    static void Main(string[] args)
+    static async Task Main(string[] args)
     {
         // Defining an instance of the protection class
         DefenceStrategiesBST defenceStrategiesBST = new DefenceStrategiesBST();
@@ -19,15 +19,17 @@ class Program // Binary search tree program
         // Inserting values ​​from the file into an array
         List<ModelNode> values = JsonConvert.DeserializeObject<List<ModelNode>>(jsonContentDefence);
 
-        // A loop that goes through the entire array and you send them to a function that will insert the values ​​into the tree
-        foreach (var item in values)
-        {
-            defenceStrategiesBST.Insert(item);
-        }
+        InsertsValuesLoopIntoTheTree(values, defenceStrategiesBST);
+
+        await Task.Delay(4000);
 
         // A call to a function that will print the entire defense tree
         defenceStrategiesBST.preorderTraversal();
 
+        // A call to a function that will print visual the entire defense tree
+        defenceStrategiesBST.PrintTree(defenceStrategiesBST.root);
+
+        await Task.Delay(4000);
         //***************************************************************************
 
         // Reading all data from a JSON file
@@ -37,10 +39,19 @@ class Program // Binary search tree program
         // Inserting values ​​from the file into an array
         List<ModelThreat> threats = JsonConvert.DeserializeObject<List<ModelThreat>>(jsonContentThrets);
 
-        
-        StartAttack(threats,defenceStrategiesBST);
+        await Task.Delay(4000);
+
+        await StartAttack(threats,defenceStrategiesBST);
 
 
+    }
+
+    public static void InsertsValuesLoopIntoTheTree(List<ModelNode> values, DefenceStrategiesBST defenceStrategiesBST)
+    {
+        foreach (var item in values)
+        {
+            defenceStrategiesBST.Insert(item);
+        }
     }
 
     public static string  GetjsonDefence()
@@ -54,17 +65,17 @@ class Program // Binary search tree program
     }
 
     // This function starts an attack
-    public static void StartAttack(List<ModelThreat> threats, DefenceStrategiesBST defenceStrategiesBST)
+    public static async Task StartAttack(List<ModelThreat> threats, DefenceStrategiesBST defenceStrategiesBST)
     {
         // This loop runs through all the threats and sends them to the function that creates an attack
         foreach (var item in threats)
         {
-            CreteAttack(item, defenceStrategiesBST);
+            await CreteAttack(item, defenceStrategiesBST);
         }
     }
 
     // This function creates an attack
-    public static void CreteAttack(ModelThreat modelThreat, DefenceStrategiesBST defenceStrategiesBST)
+    public static async Task CreteAttack(ModelThreat modelThreat, DefenceStrategiesBST defenceStrategiesBST)
     {
         int severity = CalculateSeverity(modelThreat.Volume, modelThreat.Sophistication, modelThreat.Target);
         int value = defenceStrategiesBST.FindValueInTree(severity);
@@ -85,7 +96,10 @@ class Program // Binary search tree program
         {
             Console.WriteLine($"Attack ThreatType is: {modelThreat.ThreatType}, Volume is: {modelThreat.Volume}, Sophistication is: {modelThreat.Sophistication}, Target is: {modelThreat.Target}");
 
+            await Task.Delay(2000);
+            
             Console.WriteLine($"defence is: {value}");
+
         }
 
     }
