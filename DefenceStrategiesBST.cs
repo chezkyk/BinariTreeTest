@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BinariTreeTest
 {
@@ -36,6 +37,30 @@ namespace BinariTreeTest
             }
             return node;
         }
-        
+        public void recursivePreorder(Node node)
+        {
+            Console.Write(node.Value.MinSeverity.ToString() +" ");
+            Console.Write(node.Value.MaxSeverity.ToString() + " ");
+            if (node.Left != null)
+            {
+                recursivePreorder(node.Left);
+            }
+            if (node.Right != null)
+            {
+                recursivePreorder(node.Right);
+            }
+        }
+        public void preorderTraversal()
+        {
+            if (root != null)
+            {
+                recursivePreorder(root);
+            }
+            else
+            {
+                Console.WriteLine("There is no tree to process");
+            }
+
+        }
     }
 }
