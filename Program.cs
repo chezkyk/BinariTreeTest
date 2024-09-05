@@ -14,7 +14,7 @@ class Program // Binary search tree program
         DefenceStrategiesBST defenceStrategiesBST = new DefenceStrategiesBST();
 
         // Reading all data from a JSON file
-        string jsonContentDefence = File.ReadAllText("C:\\Users\\Admin\\source\\repos\\BinariTreeTest\\JsonFiles\\defenceStrategiesBalanced.json");
+        string jsonContentDefence = GetjsonDefence();
 
         // Inserting values ​​from the file into an array
         List<ModelNode> values = JsonConvert.DeserializeObject<List<ModelNode>>(jsonContentDefence);
@@ -31,7 +31,7 @@ class Program // Binary search tree program
         //***************************************************************************
 
         // Reading all data from a JSON file
-        string jsonContentThrets = File.ReadAllText("C:\\Users\\Admin\\source\\repos\\BinariTreeTest\\JsonFiles\\threats.json");
+        string jsonContentThrets = GetjsonThreatse();
 
 
         // Inserting values ​​from the file into an array
@@ -41,6 +41,16 @@ class Program // Binary search tree program
         StartAttack(threats,defenceStrategiesBST);
 
 
+    }
+
+    public static string  GetjsonDefence()
+    {
+        return File.ReadAllText("C:\\Users\\Admin\\source\\repos\\BinariTreeTest\\JsonFiles\\defenceStrategiesBalanced.json");
+    }
+
+    public static string GetjsonThreatse()
+    {
+        return File.ReadAllText("C:\\Users\\Admin\\source\\repos\\BinariTreeTest\\JsonFiles\\threats.json");
     }
 
     // This function starts an attack
