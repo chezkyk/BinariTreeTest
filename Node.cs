@@ -10,15 +10,12 @@ namespace BinariTreeTest
     {
         public Node Right { get; set; }
         public Node Left { get; set; }
-        public int MaxSeverity { get; set; }
-        public int MinSeverity { get; set; }
-        public List<string> Defenses { get; set; }
+        
+        public ModelNode Value { get; set; }
 
-        public Node(int maxSeverity,int minSeverity)
+        public Node(ModelNode modelNode)
         {
-            MaxSeverity = maxSeverity;
-            MinSeverity = minSeverity;
-            Defenses = new List<string>();
+            Value = modelNode;
         }
 
     }
