@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading;
 
 class Program // Binary search tree program
 {
@@ -48,9 +49,10 @@ class Program // Binary search tree program
 
     public static void InsertsValuesLoopIntoTheTree(List<ModelNode> values, DefenceStrategiesBST defenceStrategiesBST)
     {
-        foreach (var item in values)
+        // O(n)
+        for (int i = 0; i < values.Count(); i++)
         {
-            defenceStrategiesBST.Insert(item);
+            defenceStrategiesBST.Insert(values[i]);
         }
     }
 
@@ -68,9 +70,11 @@ class Program // Binary search tree program
     public static async Task StartAttack(List<ModelThreat> threats, DefenceStrategiesBST defenceStrategiesBST)
     {
         // This loop runs through all the threats and sends them to the function that creates an attack
-        foreach (var item in threats)
+
+        // O(n)
+        for (int i = 0; i < threats.Count(); i++)
         {
-            await CreteAttack(item, defenceStrategiesBST);
+            await CreteAttack(threats[i], defenceStrategiesBST);
         }
     }
 
