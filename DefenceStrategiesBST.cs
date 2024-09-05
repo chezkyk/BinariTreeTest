@@ -40,7 +40,7 @@ namespace BinariTreeTest
         }
         public void recursivePreorder(Node node)
         {
-            Console.Write(node.Value.MinSeverity.ToString() +" ");
+            Console.Write(node.Value.MinSeverity.ToString() + " ");
             Console.Write(node.Value.MaxSeverity.ToString() + " ");
             if (node.Left != null)
             {
@@ -63,6 +63,33 @@ namespace BinariTreeTest
             }
 
         }
+        public void PrintTree(Node node)
+        {
+            PrintTreeRec(node, "", true);
+        }
+        private void PrintTreeRec(Node node, string indent, bool last)
+        {
+            if (node != null)
+            {
+                Console.Write(indent);
+                if (last)
+                {
+                    Console.Write("Right----");
+                    indent += "   ";
+                }
+                else
+                {
+                    Console.Write("Left----");
+                    indent += "|  ";
+                }
+                Console.WriteLine($"{node.Value.MinSeverity} {node.Value.MaxSeverity}");
+                PrintTreeRec(node.Left, indent, false);
+                PrintTreeRec(node.Right, indent, true);
+            }
+        }
+
+
+
 
         public int FindValueInTree(int value)
         {
