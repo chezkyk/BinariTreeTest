@@ -144,6 +144,7 @@ namespace BinariTreeTest
         }
 
         // O(log(n)) (because its a balanced tree).
+        // if not balanced O(n).
         public Node GetMinRecursion(Node node)
         {
             if (node.Left == null)
