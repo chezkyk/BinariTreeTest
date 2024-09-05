@@ -22,6 +22,9 @@ namespace BinariTreeTest
             root = InsertRecursion(root, value);
 
         }
+
+        // O(n) worst case
+        // O(log(n)) mid case
         private Node InsertRecursion(Node node, ModelNode value)
         {
             if (node == null)
@@ -38,6 +41,9 @@ namespace BinariTreeTest
             }
             return node;
         }
+
+
+        // O(n)
         public void recursivePreorder(Node node)
         {
             Console.Write(node.Value.MinSeverity.ToString() + " ");
@@ -51,6 +57,8 @@ namespace BinariTreeTest
                 recursivePreorder(node.Right);
             }
         }
+
+        
         public void preorderTraversal()
         {
             if (root != null)
@@ -63,10 +71,15 @@ namespace BinariTreeTest
             }
 
         }
+
+
         public void PrintTree(Node node)
         {
             PrintTreeRec(node, "", true);
         }
+
+
+        // O(n)
         private void PrintTreeRec(Node node, string indent, bool last)
         {
             if (node != null)
@@ -90,7 +103,8 @@ namespace BinariTreeTest
 
 
 
-
+        // O(n) worst case
+        // O(log(n)) mid case
         public int FindValueInTree(int value)
         {
             int ans = PreorderFindValueRecursion(root, value);
@@ -118,6 +132,8 @@ namespace BinariTreeTest
             }
 
         }
+
+
         public Node GetMin()
         {
             if (root == null)
@@ -126,6 +142,8 @@ namespace BinariTreeTest
             }
             return GetMinRecursion(root);
         }
+
+        // O(log(n)) (because its a balanced tree).
         public Node GetMinRecursion(Node node)
         {
             if (node.Left == null)
